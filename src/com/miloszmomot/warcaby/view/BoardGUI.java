@@ -137,7 +137,7 @@ public class BoardGUI extends Parent {
         return false;
     }
 
-    public Node getNodeUsingIndex(int x, int y) {
+    private Node getNodeUsingIndex(int x, int y) {
         for (Node node : pieces.getChildren()) {
             if (node.getLayoutX() == x * fieldSize && node.getLayoutY() == y * fieldSize) {
                 return node;

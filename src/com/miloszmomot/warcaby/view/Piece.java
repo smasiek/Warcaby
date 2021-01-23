@@ -1,17 +1,16 @@
 package com.miloszmomot.warcaby.view;
 
 import com.miloszmomot.warcaby.PieceColor;
+import javafx.event.Event;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
-import java.awt.*;
 
 public class Piece extends StackPane {
     private int x;
     private int y;
-    private int width = 100;
-    private int height = 100;
     private PieceColor pieceColor;
     private boolean round;
     private ImageView image = new ImageView();
@@ -21,7 +20,9 @@ public class Piece extends StackPane {
     private double newMouseX, newMouseY;
 
     public Piece(int x, int y, PieceColor pieceColor) {
+        int height = 100;
         this.x = x * height;
+        int width = 100;
         this.y = y * width;
         this.pieceColor = pieceColor;
 
@@ -38,8 +39,7 @@ public class Piece extends StackPane {
 
         setOnMousePressed(e -> {
             if(round) {
-                newMouseX = e.getSceneX();
-                newMouseY = e.getSceneY();
+                newMouseUpdate(e);
             }
         });
 
@@ -58,6 +58,11 @@ public class Piece extends StackPane {
         mouseX = x;
         mouseY = y;
         relocate(mouseX, mouseY);
+    }
+
+    private void newMouseUpdate(MouseEvent e){
+        newMouseX = e.getSceneX();
+        newMouseY = e.getSceneY();
     }
 
     public void setNewCoords(double x, double y) {
