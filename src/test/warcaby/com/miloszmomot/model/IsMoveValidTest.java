@@ -15,8 +15,7 @@ public class IsMoveValidTest extends TestFXBase {
         Piece darkPiece=new Piece(PieceColor.DARK, PieceType.MEN);
         boardLogic.getBoard()[4][3].setPiece(darkPiece);
 
-
-       // assertEquals(boardLogic.isMoveValid(4,5,3,4), MoveType.NORMAL);
+        assertEquals(boardLogic.isMoveValid(4,5,3,4), MoveType.NORMAL);
         assertEquals(boardLogic.isMoveValid(2,5,3,4), MoveType.NORMAL);
         assertEquals(boardLogic.isMoveValid(1,6,3,4), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(5,6,3,4), MoveType.INVALID);
@@ -24,6 +23,10 @@ public class IsMoveValidTest extends TestFXBase {
         assertEquals(boardLogic.isMoveValid(4,3,3,4), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(1,2,3,4), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(5,2,3,4), MoveType.INVALID);
+
+        boardLogic.setRound(PieceColor.DARK);
+        boardLogic.move(4,5,3,4,MoveType.NORMAL);
+        assertNotNull(boardLogic.getBoard()[5][4].getPiece());
     }
 
     @Test
@@ -40,6 +43,10 @@ public class IsMoveValidTest extends TestFXBase {
         assertEquals(boardLogic.isMoveValid(5,6,3,4), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(1,2,3,4), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(5,2,3,4), MoveType.INVALID);
+
+        boardLogic.setRound(PieceColor.LIGHT);
+        boardLogic.move(4,3,3,4,MoveType.NORMAL);
+        assertNotNull(boardLogic.getBoard()[3][4].getPiece());
     }
 
     @Test
@@ -56,6 +63,10 @@ public class IsMoveValidTest extends TestFXBase {
         assertEquals(boardLogic.isMoveValid(5,6,3,4), MoveType.NORMAL);
         assertEquals(boardLogic.isMoveValid(1,2,3,4), MoveType.NORMAL);
         assertEquals(boardLogic.isMoveValid(5,2,3,4), MoveType.NORMAL);
+
+        boardLogic.setRound(PieceColor.LIGHT);
+        boardLogic.move(5,2,3,4,MoveType.NORMAL);
+        assertNotNull(boardLogic.getBoard()[2][5].getPiece());
     }
 
     @Test
@@ -87,6 +98,8 @@ public class IsMoveValidTest extends TestFXBase {
 
         assertEquals(boardLogic.getBestPieceToMove(),darkPiece);
 
+        assertEquals(boardLogic.getBestMoveDirectionX(),-1);
+        assertEquals(boardLogic.getBestMoveDirectionY(),1);
 
     }
 
@@ -109,13 +122,7 @@ public class IsMoveValidTest extends TestFXBase {
         boardGUI.killEnemy(3,4);
         boardGUI.setPiece(4,3,PieceColor.LIGHT);
 
-        assertTrue(boardLogic.isBestMoveFound());
-        assertTrue(boardLogic.isBestPieceFound());
-
         assertEquals(boardLogic.getBestPieceToMove(),darkPiece);
-
-        assertEquals(boardLogic.getBestMoveDirectionX(),-1);
-        assertEquals(boardLogic.getBestMoveDirectionY(),1);
 
         assertEquals(boardLogic.isMoveValid(6,3,5,2), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(4,3,5,2), MoveType.INVALID);
@@ -145,9 +152,6 @@ public class IsMoveValidTest extends TestFXBase {
 
 
         assertEquals(boardLogic.getBestPieceToMove(),darkPiece);
-
-        assertEquals(boardLogic.getBestMoveDirectionX(),-1);
-        assertEquals(boardLogic.getBestMoveDirectionY(),1);
 
         assertEquals(boardLogic.isMoveValid(6,3,5,2), MoveType.INVALID);
         assertEquals(boardLogic.isMoveValid(4,3,5,2), MoveType.INVALID);
