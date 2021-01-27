@@ -1,7 +1,7 @@
 package warcaby.com.miloszmomot.model;
 
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -30,6 +30,8 @@ public class FieldAttributesTest extends TestFXBase{
 
     @Test
     public void isFieldOccupied() {
+        boardLogic.setPieces();
+
         assertNull(boardLogic.getBoard()[0][0].getPiece());
         assertFalse(boardLogic.isFieldOccupied(0,0));
 

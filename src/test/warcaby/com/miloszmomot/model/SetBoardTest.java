@@ -2,7 +2,8 @@ package warcaby.com.miloszmomot.model;
 
 import javafx.stage.Stage;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import warcaby.com.miloszmomot.Controller;
 import warcaby.com.miloszmomot.PieceColor;
 import warcaby.com.miloszmomot.PieceType;
@@ -13,7 +14,9 @@ public class SetBoardTest  extends TestFXBase{
 
     @Test
     public void setBoard() {
-        boardLogic.setBoard();
+        //part of typical startup routine, not included in TestFXBase to make testing pieces easier
+        controller.setLogicBoardPieces();
+        controller.setBoardGUIPieces();
 
         //Check distinctive fields
         assertFalse(boardLogic.getBoard()[0][0].getPlaceable());

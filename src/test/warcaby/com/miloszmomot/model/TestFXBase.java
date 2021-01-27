@@ -14,9 +14,9 @@ import java.util.concurrent.TimeoutException;
 
 public class TestFXBase extends ApplicationTest {
 
-    BoardLogic boardLogic;
-    BoardGUI boardGUI;
-    Controller controller;
+    public BoardLogic boardLogic;
+    public BoardGUI boardGUI;
+    public Controller controller;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -38,12 +38,5 @@ public class TestFXBase extends ApplicationTest {
     }
 
 
-    @Before
-    public void setUp() throws Exception {
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
-                boardLogic.getBoard()[y][x] = new Field(x, y);
-            }
-        }
-    }
+
 }
