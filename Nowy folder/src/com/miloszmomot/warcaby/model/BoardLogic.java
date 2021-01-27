@@ -115,8 +115,6 @@ public class BoardLogic {
                 }
             }
 
-            //TODO: program mozna ulepszyc: krol i pionek dziedziczą z bierki, kazdy na swoj sposob zabija i sie porusza
-
             if (board[oldIndexY][oldIndexX].getPiece().getMoveDirection() == (oldIndexY - newIndexY)) {
                 //check if men moves in right direction
                 if (killAvailable) {
@@ -158,10 +156,11 @@ public class BoardLogic {
                 }
             }
         }
-
+        if (newIndexX == oldIndexX && newIndexY == oldIndexY) {
+            return MoveType.NONE;
+        }
         return MoveType.INVALID;
     }
-
 
     private MoveType killUsingKing(int newIndexX, int newIndexY, int xDir, int yDir, Field[][] board) {
         int enemyY = newIndexY - yDir;
@@ -234,17 +233,13 @@ public class BoardLogic {
             }
         }
 
-        changeRound();
-        chooseBestPiece();
-        controller.changeRound();
-    }
-
-    private void changeRound(){
         if (round.equals(PieceColor.LIGHT)) {
             round = PieceColor.DARK;
         } else {
             round = PieceColor.LIGHT;
         }
+        chooseBestPiece();
+        controller.changeRound();
     }
 
     private void findOptimalMove(int x, int y) {

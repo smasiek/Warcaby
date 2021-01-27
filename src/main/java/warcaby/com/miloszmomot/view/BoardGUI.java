@@ -1,8 +1,8 @@
-package com.miloszmomot.warcaby.view;
+package warcaby.com.miloszmomot.view;
 
-import com.miloszmomot.warcaby.Controller;
-import com.miloszmomot.warcaby.MoveType;
-import com.miloszmomot.warcaby.PieceColor;
+import warcaby.com.miloszmomot.Controller;
+import warcaby.com.miloszmomot.MoveType;
+import warcaby.com.miloszmomot.PieceColor;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
 
@@ -25,7 +26,7 @@ public class BoardGUI extends Parent {
     private Color moccasin = new Color(1, 0.8941176, 0.7098, 1);
     private Color chocolate = new Color(0.8235, 0.4117, 0.117647, 1);
     private Group board = new Group();
-    private Group pieces = new Group();
+    private Group pieces= new Group();
     private int fieldSize = 100;
     private Pane root;
     private int windowSize = 800;
@@ -43,30 +44,30 @@ public class BoardGUI extends Parent {
             }
         }
         root.getChildren().add(board);
-        setPieces();
-        root.getChildren().add(pieces);
     }
 
     public void setPieces(){
+        pieces= new Group();
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 if (controller.isFieldOccupied(x, y)) {
                     if (controller.placedPieceColor(x, y).equals(PieceColor.DARK)) {
-                        Piece piece = new Piece(x, y, PieceColor.DARK);
-                        piece.setOnMouseReleased(e -> {
-                            tryMove(piece);
-                        });
-                        pieces.getChildren().add(piece);
+                        setPiece(x,y,PieceColor.DARK);
                     } else if (controller.placedPieceColor(x, y).equals(PieceColor.LIGHT)) {
-                        Piece piece = new Piece(x, y, PieceColor.LIGHT);
-                        piece.setOnMouseReleased(e -> {
-                            tryMove(piece);
-                        });
-                        pieces.getChildren().add(piece);
+                        setPiece(x,y,PieceColor.LIGHT);
                     }
                 }
             }
         }
+        root.getChildren().add(pieces);
+    }
+
+    public void setPiece(int x,int y,PieceColor color){
+        Piece piece = new Piece(x, y, color);
+        piece.setOnMouseReleased(e -> {
+            tryMove(piece);
+        });
+        pieces.getChildren().add(piece);
     }
 
     private void tryMove(Piece piece) {
@@ -137,7 +138,7 @@ public class BoardGUI extends Parent {
         return false;
     }
 
-    private Node getNodeUsingIndex(int x, int y) {
+    public Node getNodeUsingIndex(int x, int y) {
         for (Node node : pieces.getChildren()) {
             if (node.getLayoutX() == x * fieldSize && node.getLayoutY() == y * fieldSize) {
                 return node;
@@ -191,6 +192,7 @@ public class BoardGUI extends Parent {
                 Node node = getNodeUsingIndex(i, j);
                 if (node != null) {
                     pieces.getChildren().remove(node);
+
                 }
             }
         }
@@ -207,7 +209,7 @@ public class BoardGUI extends Parent {
 
         dialogStage.setTitle("Wynik");
         dialogStage.setResizable(false);
-        dialogStage.getIcons().add(new Image("com/miloszmomot/warcaby/resources/biała damka.png"));
+        dialogStage.getIcons().add(new Image("biała damka.png"));
 
         dialogBox.setPrefSize(200,100);
 
