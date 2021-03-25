@@ -1,7 +1,6 @@
-package com.miloszmomot.warcaby.view;
+package warcaby.com.miloszmomot.view;
 
-import com.miloszmomot.warcaby.PieceColor;
-import javafx.event.Event;
+import warcaby.com.miloszmomot.PieceColor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,10 +28,10 @@ public class Piece extends StackPane {
         move(this.x, this.y);
 
         if (pieceColor == PieceColor.LIGHT) {
-            Image image = new Image("com/miloszmomot/warcaby/resources/bialy pionek.png");
+            Image image = new Image("/bialy pionek.png");
             this.image.setImage(image);
         } else if (pieceColor == PieceColor.DARK) {
-            Image image = new Image("com/miloszmomot/warcaby/resources/ciemny pionek.png");
+            Image image = new Image("/ciemny pionek.png");
             this.image.setImage(image);
         }
         getChildren().addAll(image);
@@ -86,9 +85,9 @@ public class Piece extends StackPane {
     public void makeKing(PieceColor color){
         Image image=null;
         if(color==PieceColor.LIGHT){
-             image= new Image("com/miloszmomot/warcaby/resources/biała damka.png");
+             image= new Image("/biała damka.png");
         } else if (color==PieceColor.DARK){
-            image=new Image("com/miloszmomot/warcaby/resources/ciemna damka.png");
+            image=new Image("/ciemna damka.png");
         }
         this.image.setImage(image);
     }

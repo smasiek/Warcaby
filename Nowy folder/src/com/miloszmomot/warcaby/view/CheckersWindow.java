@@ -24,7 +24,7 @@ public class CheckersWindow extends Application {
         controller=new Controller(primaryStage);
         primaryStage.setTitle("Warcaby");
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("com/miloszmomot/warcaby/resources/biała damka.png"));
+        primaryStage.getIcons().add(new Image("main/java/warcaby/com/miloszmomot/resources/biała damka.png"));
 
         BoardGUI boardGUI = controller.getBoardGUI();
         boardGUI.startGame();

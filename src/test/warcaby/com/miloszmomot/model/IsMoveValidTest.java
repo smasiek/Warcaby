@@ -100,6 +100,7 @@ public class IsMoveValidTest extends TestFXBase {
 
         assertEquals(boardLogic.getBestMoveDirectionX(),-1);
         assertEquals(boardLogic.getBestMoveDirectionY(),1);
+
     }
 
     @Test
